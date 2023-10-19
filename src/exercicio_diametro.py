@@ -78,6 +78,7 @@ while fim == False:
     vel = (Q/3600)/A
 
     vel_cm = vel*100  # cm/s
+    print(f'{vel_cm} akpmdpasnm')
 
     Re = (d_int * (vel*100))/visc
 
