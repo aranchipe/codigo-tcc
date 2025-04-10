@@ -148,7 +148,7 @@ vel = (Q/3600)/area
 
 vel_cm = vel*100  # cm/s
 
-J_cm = 32*L_EQUIV*visc*vel_cm/(9.81*(d_int_cm**2))  # cm   
-J_m = J_cm/100
+perdaDeCargaCent = 32*L_EQUIV*visc*vel_cm/(9.81*(d_int_cm**2))  # cm   
+perdaDeCargaMetros = perdaDeCargaCent/100
 
-print(J_m)
+print(perdaDeCargaMetros)
