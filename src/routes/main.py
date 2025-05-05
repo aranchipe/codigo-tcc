@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from functions.calculos import perdaDeCarga
-from data.diametros import diametros_serie_40
 main_bp = Blueprint('main', __name__)
+
+
 
 @main_bp.route("/")
 def inicio():
@@ -27,10 +27,6 @@ def vao_suportes():
     diametro_vao = request.args.get("diametro_vao")
     return render_template("vao_suportes.html", espessura_real=espessura_real, diametro_vao=diametro_vao)
 
-""" @vao_bp.route("/vao_suportes")
-def vao_suportes():
-    return render_template("vao_suportes.html")
- """
 @main_bp.route("/diametro_espessura")
 def diametro_espessura():
     tipo = request.args.get("tipo")

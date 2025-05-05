@@ -4,8 +4,6 @@ import math
 
 vao_bp = Blueprint("vao", __name__) 
 
-
-
 @vao_bp.route("/calculate_vao", methods=["POST"])
 def calculate_vao():   
     espessura = float(request.form["espessura_real"])
@@ -20,8 +18,6 @@ def calculate_vao():
     Z = float(request.form["Z"])
     E = float(request.form["E"])
     I = math.pi*((diametro_vao_cm/2)**4 - ((diametro_vao_cm/2)-espessura_cm)**4)/4
-    print(f"momento de inercia {I}")
-    """ I = float(request.form["I"]) """
 
 
     numerador = -2*(Q + W) + math.sqrt((2*(Q + W))**2 + 4*q*10*Z*S_v)
