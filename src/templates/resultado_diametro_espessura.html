@@ -1,0 +1,31 @@
+<!-- templates/resultado.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Diâmetro</title>
+</head>
+<body>
+    <button type="button" onclick="window.location.href='/'">Início</button>
+    <button type="button" onclick="history.back()">Voltar</button>
+
+    {% if error_temp %}
+    <h1>{{ error_temp }}</h1>
+    {% else %}
+
+    <h1>Diâmetro</h1>
+    <p>O diâmetro adequado é {{ diametro }} pol. 
+        com schedule {{ schedule }} 
+        espessura calculada: {{espessura}}" 
+        espessura real: {{espessura_real}}" 
+        com material {{ material }}</p>
+
+    <form action="/vao_suportes" method="get">
+        <input type="hidden" name="espessura_real" value="{{ espessura_real }}">
+        <input type="hidden" name="diametro_vao" value="{{ diametro }}">
+        
+        <button type="submit">Calcular Vão Entre Suportes</button>
+    </form>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head> 
+    <title>Vão Entre Suportes</title>
+</head>
+
+<body>
+    <button type="button" onclick="window.location.href='/'">Início</button>
+    <button type="button" onclick="history.back()">Voltar</button>
+
+    <h1>Cálculo do Vão Entre Suportes</h1>
+
+    {% if diametro_vao %}
+        <p><strong>Diâmetro recebido:</strong> {{ diametro_vao }} pol.</p>
+    {% endif %}
+    <p> espessura real {{ espessura_real }}</p>
+
+    <form action="/calculate_vao" method="post">
+        <!-- Campo escondido com o valor do diâmetro -->
+        <input type="hidden" name="diametro_vao" value="{{ diametro_vao }}">
+
+        <input type="hidden" name="espessura_real" value="{{ espessura_real }}">
+
+        <label for="q">Carga Distribuída Total (N/m):</label><br><br>
+        <input type="number" step="any" name="q" id="q" required value="10601"><br><br>
+
+        <label for="Q">Cargas Aplicadas Totais - Se não houver, mantém 0 (N):</label><br><br>
+        <input type="number" step="any" name="Q" id="Q" required value="0"><br><br>
+
+        <label for="W">Sobrecarga - Recomenda-se 2000N para tubulações de aço de 3" ou maior, situadas até 3m do solo (N) :</label><br><br>
+        <input type="number" step="any" name="W" id="W" required value="0"><br><br>
+
+        <label for="flecha">Flecha Máxima (mm):</label><br><br>
+        <input type="number" step="any" name="flecha" id="flecha" required value="25"><br><br>
+        
+        <label for="S_v">Tensão Máxima (MPa):</label><br><br>
+        <input type="number" step="any" name="S_v" id="S_v" required value="100"><br><br>
+
+        <label for="Z">Momento Resistente da Seção Transversal do Tubo (cm³):</label><br><br>
+        <input type="number" step="any" name="Z" id="Z" required value="7110"><br><br>
+
+        <label for="E">Módulo de Elasticidade (MPa):</label><br><br>
+        <input type="number" step="any" name="E" id="E" required value="200000"><br><br>
+
+        <!-- <label for="I">Momento de Inércia da Seção Transversal (cm⁴):</label><br><br>
+        <input type="number" step="any" name="I" id="I" required value="362000"><br><br> -->
+
+        <input type="submit" value="Calcular">
+    </form>
+</body>
+
+</html>

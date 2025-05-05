@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html> 
+
+<head> 
+    <title>Cálculo da Espessura</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='diametro_espessura.css') }}">
+</head>
+
+<body>
+    <div class="left-body">
+
+        <button type="button" onclick="window.location.href='/'">Início</button>
+    
+        <h1>Cálculo da Espessura {{tipo}}</h1>
+    
+        
+        <form action="/calculate_diametro_espessura" method="post">
+    
+            <label for="material">Material (Material/Spec/Type)</label>
+            <select id="material" name="material">
+                <option value="A285_Gr.A/A134/-">A285_Gr.A / A134 / -</option>
+                <option value="A285_Gr.B/A134/-">A285_Gr.B / A134 / -</option>
+                <option value="A285_Gr.C/A134/-">A285_Gr.C / A134 / -</option>
+                <option value="A515_Gr.60/A672/B60">A515_Gr.60 / A672 / B60</option>
+                <option value="A515_Gr.70/A672/B70">A515_Gr.70 / A672 / B70</option>
+                <option value="18Cr-8Ni/A312/TP304L">18Cr-8Ni / A312 / TP304L</option>
+                <option value="16Cr-12Ni-2Mo/A312/TP316L">16Cr-12Ni-2Mo / A312 / TP316L</option>
+                <option value="-/A53/A">- / A53 / A</option>
+                <option value="-/A53/B">- / A53 / B</option>
+                <option value="-/A106/A">- / A106 / A</option>
+                <option value="-/API5L/A">- / API5L / A</option>
+                <option value="-/API5L/B">- / API5L / B</option>
+            </select><br><br>
+    
+            <label for="temp">Temperatura (°F):</label>
+            <input type="number" step="any" name="temp" id="temp" required value="600"><br><br>
+    
+            {% if tipo == "succao" %}
+    
+            <input type="hidden" name="tipo" value="succao">
+    
+            <label for="q">Q (m³/h):</label>
+            <input type="number" step="any" name="q" id="q" required value="32.4"><br><br>
+    
+            <label for="l_equi">Comprimento equivalente (m):</label>
+            <input type="number" step="any" name="l_equi" id="l_equi" required value="80.9"><br><br>
+    
+            <label for="h1">H1 (m):</label>
+            <input type="number" step="any" name="h1" id="h1" required value="3.6"><br><br>
+    
+            <label for="h2">H2 (m):</label>
+            <input type="number" step="any" name="h2" id="h2" required value="1"><br><br>
+    
+            <label for="p_atm">P_atm (kPa):</label>
+            <input type="number" step="any" name="p_atm" id="p_atm" required value="103.3"><br><br>
+    
+            <label for="p_vapor">P_vapor (kPa):</label>
+            <input type="number" step="any" name="p_vapor" id="p_vapor" required value="35.2"><br><br>
+    
+            <label for="peso_esp">Peso Específico (N/dm³):</label>
+            <input type="number" step="any" name="peso_esp" id="peso_esp" required value="7.8"><br><br>
+    
+            <label for="visc">Viscosidade (stokes):</label>
+            <input type="number" step="any" name="visc" id="visc" required value="0.06"><br><br>
+    
+            <label for="vel_eco">Velocidade Econômica (m/s):</label>
+            <input type="number" step="any" name="vel_eco" id="vel_eco" required value="1"><br><br>
+    
+            <label for="npsh">NPSH (m):</label>
+            <input type="number" step="any" name="npsh" id="npsh" required value="1.9"><br><br>
+    
+            <label for="p_proj">Pressão de Projeto (psig):</label>
+            <input type="number" step="any" name="p_proj" id="p_proj" required value="800"><br><br>
+    
+            <label for="margem_corrosao">Margem para Corrosão (pol):</label>
+            <input type="number" step="any" name="margem_corrosao" id="margem_corrosao" required value="0.05"><br><br>
+    
+            <label for="E">Coeficiente de Eficiência de Solda :</label>
+            <input type="number" step="any" name="E" id="E" required value="1"><br><br>
+    
+            <label for="Y">Coeficiente de Redução:</label>
+            <input type="number" step="any" name="Y" id="Y" required value="0.4"><br><br>
+    
+    
+            {% else %}
+            <input type="hidden" name="tipo" value="recalque">
+    
+    
+            <label for="q">Q (m^3/h):</label>
+            <input type="number" step="any" name="q" id="q" required value="100"><br><br>
+    
+            <label for="l_equi">Comprimento equivalente (metros):</label>
+            <input title="texto" type="number" step="any" name="l_equi" id="l_equi" required value="215"><br><br>
+    
+            <label for="h1">H1 (metros):</label>
+            <input type="number" step="any" name="h1" id="h1" required value="0.85"><br><br>
+    
+            <label for="h2">H2 (metros):</label>
+            <input type="number" step="any" name="h2" id="h2" required value="13.70"><br><br>
+    
+            <label for="p1">P1 (kPa):</label>
+            <input type="number" step="any" name="p1" id="p1" required value="316"><br><br>
+    
+            <label for="p2">P2 (kPa):</label>
+            <input type="number" step="any" name="p2" id="p2" required value="155.8"><br><br>
+    
+            <label for="peso_esp">Peso Específico (N/dm³):</label>
+            <input type="number" step="any" name="peso_esp" id="peso_esp" required value="9.5"><br><br>
+    
+            <label for="visc">Viscosidade (stokes):</label>
+            <input type="number" step="any" name="visc" id="visc" required value="5.5"><br><br>
+    
+            <label for="vel_eco">Velocidade Econômica (m/s):</label>
+            <input type="number" step="any" name="vel_eco" id="vel_eco" required value="1"><br><br>
+    
+            <label for="p_proj">Pressão de Projeto (psig):</label>
+            <input type="number" step="any" name="p_proj" id="p_proj" required value="800"><br><br>
+    
+            <label for="margem_corrosao">Margem para Corrosão (pol):</label>
+            <input type="number" step="any" name="margem_corrosao" id="margem_corrosao" required value="0.05"><br><br>
+    
+            <label for="E">Coeficiente de Eficiência de Solda :</label>
+            <input type="number" step="any" name="E" id="E" required value="1"><br><br>
+    
+            <label for="Y">Coeficiente de Redução:</label>
+            <input type="number" step="any" name="Y" id="Y" required value="0.4"><br><br>
+    
+            {% endif %}
+            <input type="submit" value="Calcular">
+        </form>
+    </div>
+    <div class="right-body">
+        <img src="{{ url_for('static', filename='images/tabela_tensoes.PNG') }}" alt="tabela_tensoes">
+    </div>
+</body>
+
+</html>

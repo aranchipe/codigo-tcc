@@ -12,9 +12,3 @@ a, b = coef  # Coeficientes da equação y = ax + b
 def rugosidade(d):
     return a * d + b
 
-# Testando a função
-d_teste = 102.2 
-print(f"Para d = {d_teste} mm, ε/d ≈ {rugosidade(d_teste):.6f}")
-
-# Exibir equação da reta
-print(f"Equação ajustada: ε/d = {a:.6e} * d + {b:.6e}")
